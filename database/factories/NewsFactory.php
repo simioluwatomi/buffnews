@@ -15,6 +15,6 @@ $factory->define(News::class, function (Faker $faker) {
             return factory(Category::class)->create()->id;
         },
         'title' => $faker->sentence,
-        'body'  => $faker->paragraph,
+        'body'  => $faker->paragraph($nbSentences = 10, $variableNbSentences = true),
     ];
 });

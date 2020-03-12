@@ -6,6 +6,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Category::class, function (Faker $faker) {
     return [
-        'title' => $faker->sentence,
+        'title' => $faker->sentence($nbWords = 3, $variableNbWords = true),
     ];
 });

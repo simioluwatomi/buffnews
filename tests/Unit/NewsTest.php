@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\News;
 use App\Models\User;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
@@ -46,9 +47,7 @@ class NewsTest extends TestCase
     /** @test */
     public function it_has_a_slug_attribute()
     {
-        $slug = str_replace(' ', '-', strtolower('This is a random news title'));
-
-        $this->assertEquals($slug, $this->news->slug);
+        $this->assertEquals(Str::slug('This is a random news title'), $this->news->slug);
     }
 
     /** @test */
