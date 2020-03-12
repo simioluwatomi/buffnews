@@ -1,1 +1,15 @@
 @import '~tabler/dist/css/tabler.css';
+
+.footer {
+    border-top: 1px solid rgba(134, 140, 151, 0.24);
+    background-color: #ffffff;
+    padding: 1rem 0;
+    color: #868c97;
+    margin-top: 1.25rem;
+}
+
+.footer-transparent {
+    margin-top: 0;
+    background-color: transparent;
+    border-top: 0;
+}
