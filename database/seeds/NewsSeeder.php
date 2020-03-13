@@ -12,12 +12,14 @@ class NewsSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::all();
+        $admins = User::whereHas('role', function ($query) {
+            $query->where('name', 'admin');
+        })->get();
 
-        Category::all()->each(function ($category) use ($users) {
+        Category::all()->each(function ($category) use ($admins) {
             factory(News::class, 15)->create([
                 'category_id'  => $category->id,
-                'publisher_id' => $users->random()->id,
+                'publisher_id' => $admins->random()->id,
             ]);
         });
     }
