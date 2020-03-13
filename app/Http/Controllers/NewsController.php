@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreNewsRequest;
 
 class NewsController extends Controller
 {
@@ -22,10 +24,15 @@ class NewsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create()
     {
+        $this->authorize('create', News::class);
+
+        $categories = Category::orderBy('title')->get();
+
+        return view('news.create', compact('categories'));
     }
 
     /**
@@ -33,10 +40,16 @@ class NewsController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNewsRequest $request)
     {
+        $news = auth()->user()->news()->create($request->validated());
+
+        return redirect()->route('news.show', ['news' => $news])->with('message', [
+            'status' => 'success',
+            'body'  => 'You have successfully published a news item',
+        ]);
     }
 
     /**

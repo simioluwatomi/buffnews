@@ -21,6 +21,8 @@
 
         <link href="{{ mix('css/index.css') }}" rel="stylesheet">
 
+        @stack('styles')
+
     </head>
 
     <body class="antialiased">
