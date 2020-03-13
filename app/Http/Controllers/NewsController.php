@@ -87,13 +87,23 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\News         $news
+     * @param StoreNewsRequest $request
+     * @param \App\Models\News $news
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, News $news)
+    public function update(StoreNewsRequest $request, News $news)
     {
+        $news->update([
+            'category_id' => $request->input('category_id'),
+            'title'       => $request->input('title'),
+            'body'        => $request->input('body'),
+        ]);
+
+        return redirect()->route('news.show', ['news' => $news])->with('message', [
+            'status' => 'success',
+            'body'   => 'You have successfully updated the news item',
+        ]);
     }
 
     /**

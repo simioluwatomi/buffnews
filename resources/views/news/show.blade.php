@@ -50,10 +50,8 @@
 
             <div class="card">
 
-            @can('create', \App\Models\News::class)
+                @can('create', \App\Models\News::class)
 
-
-                <!-- Dropdown -->
                     <div class="dropdown card-dropdown">
                         <a href="#"
                            class="dropdown-ellipses float-right mr-3 mt-4" role="button"

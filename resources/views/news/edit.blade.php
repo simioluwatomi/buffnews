@@ -22,9 +22,11 @@
 
             <hr>
 
-            <form action="{{ route('news.store') }}" method="post" autocomplete="off" id="news-form">
+            <form action="{{ route('news.update', ['news' => $newsItem]) }}" method="post" autocomplete="off" id="news-form">
 
                 @csrf
+
+                @method('PATCH')
 
                 <div class="form-group mb-4">
 
