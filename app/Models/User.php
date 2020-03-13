@@ -9,13 +9,17 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * App\Models\User.
  *
  * @property int                                                                                                       $id
- * @property string                                                                                                    $name
  * @property string                                                                                                    $email
- * @property null|\Illuminate\Support\Carbon                                                                           $email_verified_at
+ * @property string                                                                                                    $first_name
+ * @property string                                                                                                    $last_name
  * @property string                                                                                                    $password
  * @property null|string                                                                                               $remember_token
  * @property null|\Illuminate\Support\Carbon                                                                           $created_at
  * @property null|\Illuminate\Support\Carbon                                                                           $updated_at
+ * @property string                                                                                                    $full_name
+ * @property string                                                                                                    $initials
+ * @property \App\Models\News[]|\Illuminate\Database\Eloquent\Collection                                               $news
+ * @property null|int                                                                                                  $news_count
  * @property \Illuminate\Notifications\DatabaseNotification[]|\Illuminate\Notifications\DatabaseNotificationCollection $notifications
  * @property null|int                                                                                                  $notifications_count
  *
@@ -24,9 +28,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFirstName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
@@ -42,7 +46,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name',
+        'last_name',
+        'email',
+        'password',
     ];
 
     /**
@@ -55,11 +62,76 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Set the user's first name.
      *
-     * @var array
+     * @param string $value
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['first_name'] = mb_strtolower($value);
+    }
+
+    /**
+     * Get the user's first name.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public function getFirstNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Set the user's last name.
+     *
+     * @param string $value
+     */
+    public function setLastNameAttribute($value)
+    {
+        $this->attributes['last_name'] = mb_strtolower($value);
+    }
+
+    /**
+     * Get the user's last name.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public function getLastNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * Get the user's initials.
+     *
+     * @return string
+     */
+    public function getInitialsAttribute()
+    {
+        return "{$this->first_name[0]}{$this->last_name[0]}";
+    }
+
+    /**
+     * A user creates many volunteer opportunities.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function news()
+    {
+        return $this->hasMany(News::class, 'publisher_id');
+    }
 }
