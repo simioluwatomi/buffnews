@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+
+    @includeWhen(session('message'), 'partials.alert')
+
     <!-- Page title -->
     <div class="page-title-box">
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\News.
@@ -35,6 +36,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
  */
 class News extends Model
 {
+    use SoftDeletes;
     use Sluggable;
     /**
      * The attributes that are mass assignable.

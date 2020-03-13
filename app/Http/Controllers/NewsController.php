@@ -48,7 +48,7 @@ class NewsController extends Controller
 
         return redirect()->route('news.show', ['news' => $news])->with('message', [
             'status' => 'success',
-            'body'  => 'You have successfully published a news item',
+            'body'   => 'You have successfully published a news item',
         ]);
     }
 
@@ -94,9 +94,19 @@ class NewsController extends Controller
      *
      * @param \App\Models\News $news
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
      */
     public function destroy(News $news)
     {
+        $this->authorize('create', News::class);
+
+        $news->delete();
+
+        return redirect()->route('news.index')->with('message', [
+            'status' => 'info',
+            'body'   => 'You have successfully deleted the news item',
+        ]);
     }
 }

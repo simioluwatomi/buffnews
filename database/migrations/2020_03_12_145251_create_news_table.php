@@ -19,6 +19,7 @@ class CreateNewsTable extends Migration
             $table->string('slug');
             $table->text('body');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('publisher_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
