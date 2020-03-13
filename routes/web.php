@@ -18,3 +18,4 @@ Route::get('/news/create', [NewsController::class, 'create'])->name('news.create
 Route::post('/news', [NewsController::class, 'store'])->name('news.store')->middleware('auth');
 Route::get('/news/{news:slug}', [NewsController::class, 'show'])->name('news.show');
 Route::delete('/news/{news:slug}', [NewsController::class, 'destroy'])->name('news.delete')->middleware('auth');
+Route::get('/news/{news:slug}/edit', [NewsController::class, 'edit'])->name('news.edit')->middleware('auth');

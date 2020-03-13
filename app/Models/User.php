@@ -24,7 +24,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property \Illuminate\Notifications\DatabaseNotification[]|\Illuminate\Notifications\DatabaseNotificationCollection $notifications
  * @property null|int                                                                                                  $notifications_count
  * @property \App\Models\Role                                                                                          $role
- *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()

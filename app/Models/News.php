@@ -17,21 +17,28 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string                          $body
  * @property null|\Illuminate\Support\Carbon $created_at
  * @property null|\Illuminate\Support\Carbon $updated_at
+ * @property null|\Illuminate\Support\Carbon $deleted_at
  * @property \App\Models\Category            $category
  * @property \App\Models\User                $publisher
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News findSimilarSlugs($attribute, $config, $slug)
+ * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News query()
+ * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News whereBody($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News wherePublisherId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\News whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\News withoutTrashed()
  * @mixin \Eloquent
  */
 class News extends Model

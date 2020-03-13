@@ -71,10 +71,17 @@ class NewsController extends Controller
      *
      * @param \App\Models\News $news
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit(News $news)
     {
+        $this->authorize('create', News::class);
+
+        $categories = Category::orderBy('title')->get();
+
+        return view('news.edit', compact('categories'))->with(['newsItem' => $news]);
     }
 
     /**
@@ -94,9 +101,9 @@ class NewsController extends Controller
      *
      * @param \App\Models\News $news
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function destroy(News $news)
     {
