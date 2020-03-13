@@ -46,6 +46,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'role_id',
         'first_name',
         'last_name',
         'email',
@@ -133,5 +134,15 @@ class User extends Authenticatable
     public function news()
     {
         return $this->hasMany(News::class, 'publisher_id');
+    }
+
+    /**
+     * A user has a role.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

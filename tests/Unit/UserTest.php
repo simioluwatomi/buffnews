@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Collection;
@@ -27,6 +28,7 @@ class UserTest extends TestCase
         parent::setUp();
 
         $this->user = User::create([
+            'role_id'    => factory(Role::class)->create()->id,
             'email'      => 'janedoe@example.com',
             'first_name' => 'Jane',
             'last_name'  => 'Doe',
@@ -74,5 +76,11 @@ class UserTest extends TestCase
     public function it_publishes_news()
     {
         $this->assertInstanceOf(Collection::class, $this->user->news);
+    }
+
+    /** @test */
+    public function it_has_a_role()
+    {
+        $this->assertInstanceOf(Role::class, $this->user->role);
     }
 }
