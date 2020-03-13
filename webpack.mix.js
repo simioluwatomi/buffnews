@@ -12,4 +12,24 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/index.scss', 'public/css')
+    .copyDirectory('node_modules/tabler/demo/static', 'public/static')
+    .extract()
+    .browserSync(process.env.APP_URL)
+    .disableNotifications()
+    .version();
+
+
+// remove console.log statements from production builds
+if (mix.inProduction()) {
+    mix.options({
+        terser: {
+            terserOptions: {
+                compress: {
+                    drop_console: true
+                }
+            }
+        }
+    });
+}

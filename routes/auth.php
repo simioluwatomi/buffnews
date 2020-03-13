@@ -1,17 +1,14 @@
 <?php
 
-use App\Http\Controllers\NewsController;
-
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Auth Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where web authentication routes of the application are defined. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
 */
 
-Route::get('/', [NewsController::class, 'index'])->name('news.index');
-Route::get('/news/{news:slug}', [NewsController::class, 'show'])->name('news.show');
+Auth::routes(['register' => false]);
