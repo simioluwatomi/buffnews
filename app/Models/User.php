@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * App\Models\User.
  *
  * @property int                                                                                                       $id
+ * @property int                                                                                                       $role_id
  * @property string                                                                                                    $email
  * @property string                                                                                                    $first_name
  * @property string                                                                                                    $last_name
@@ -22,6 +23,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property null|int                                                                                                  $news_count
  * @property \Illuminate\Notifications\DatabaseNotification[]|\Illuminate\Notifications\DatabaseNotificationCollection $notifications
  * @property null|int                                                                                                  $notifications_count
+ * @property \App\Models\Role                                                                                          $role
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
@@ -33,6 +35,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRoleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
