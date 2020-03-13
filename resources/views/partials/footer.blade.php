@@ -9,15 +9,7 @@
                 <ul class="list-inline list-inline-dots mb-0">
 
                     <li class="list-inline-item">
-                        <a href="./docs/index.html" class="link-secondary">Documentation</a>
-                    </li>
-
-                    <li class="list-inline-item">
-                        <a href="./faq.html" class="link-secondary">FAQ</a>
-                    </li>
-
-                    <li class="list-inline-item">
-                        <a href="https://github.com/tabler/tabler" target="_blank"
+                        <a href="https://github.com/simioluwatomi/buffnews" target="_blank"
                            class="link-secondary">Source code</a>
                     </li>
 
@@ -26,8 +18,8 @@
             </div>
 
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
-                Copyright © 2020
-                <a href="." class="link-secondary">Tabler</a>.
+                Copyright &copy; 2020
+                <a href="http://buffer.media/" target="_blank" class="link-secondary">Buffer Media</a>.
                 All rights reserved.
             </div>
 

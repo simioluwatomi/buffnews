@@ -1,6 +1,7 @@
 <header class="navbar-wrap navbar-expand-lg flex-column">
 
     <div class="navbar navbar-border navbar-light bg-white">
+
         <div class="container">
 
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -11,7 +12,7 @@
 
                 <li class="nav-item d-none d-lg-flex mr-3">
 
-                    <a href="https://github.com/tabler/tabler" class="btn btn-secondary" target="_blank"
+                    <a href="https://github.com/simioluwatomi/buffnews" class="btn btn-secondary" target="_blank"
                        rel="noreferrer">
 
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon" fill="currentColor">
