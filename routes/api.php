@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApiNewsController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => 'v1',], function () {
+
+    Route::get('/news', [ApiNewsController::class, 'index'])->name('api.news.index');
+
+    Route::get('/news/{news}', [ApiNewsController::class, 'show'])->name('api.news.show');
+
+});
+
