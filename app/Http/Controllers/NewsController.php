@@ -47,7 +47,7 @@ class NewsController extends Controller
         $news = auth()->user()->news()->create($request->validated());
 
         return redirect()->route('news.show', ['news' => $news])->with('message', [
-            'type'  => 'success',
+            'status' => 'success',
             'body'  => 'You have successfully published a news item',
         ]);
     }

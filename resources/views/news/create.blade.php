@@ -26,7 +26,7 @@
 
                 @csrf
 
-                <div class="form-group">
+                <div class="form-group mb-4">
 
                     <label for="category">
                         Category
@@ -34,17 +34,24 @@
                     </label>
 
                     <select id="category"
-                            class="form-control mb-2 custom-select @error('') is-invalid @enderror"
-                            required>
+                            name="category_id"
+                            class="form-control custom-select @error('category_id') is-invalid @enderror"
+                            required
+                    >
                         <option value="" selected disabled hidden>Select a category</option>
 
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            <option
+                                value="{{ $category->id }}"
+                                {{ old('category_id') == $category->id ? 'selected' : '' }}
+                            >
+                                {{ $category->title }}
+                            </option>
                         @endforeach
 
                     </select>
 
-                    @error('')
+                    @error('category_id')
                     @include('partials.invalid-feedback')
                     @enderror
 
@@ -57,10 +64,14 @@
                         <span class="form-required">*</span>
                     </label>
 
-                    <input id="title" type="text" class="form-control"
+                    <input id="title"
+                           name="title"
+                           type="text"
                            class="form-control @error('title') is-invalid @enderror"
                            value="{{ old('title') }}"
-                           placeholder="Enter the news title here" required>
+                           placeholder="Enter the news title here"
+                           required
+                    >
 
                     @error('title')
                     @include('partials.invalid-feedback')
@@ -71,7 +82,7 @@
                 <textarea type="text" name="body" class="d-none" id="text-area-quill"></textarea>
 
 
-                <div id="quill-container">
+                <div id="quill-container" class="@error('body') is-invalid border border-danger @enderror">
                 </div>
 
                 @error('body')
@@ -100,7 +111,9 @@
             let form = document.getElementById('news-form');
 
             form.onsubmit = function () {
-                $('#text-area-quill').text($('.ql-editor').html());
+                if (quill.getLength() > 10) {
+                    $('#text-area-quill').text($('.ql-editor').html());
+                }
             };
 
         });

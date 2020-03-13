@@ -46,11 +46,13 @@
 
         <div class="col-lg-10 col-xl-8">
 
+            @includeWhen(session('message'), 'partials.alert')
+
             <div class="card">
 
                 <div class="card-body p-md-6">
 
-                    {{ $newsItem->body }}
+                    {!! $newsItem->body !!}.
 
                 </div>
 
